@@ -40,6 +40,24 @@
             console.log("addTaskItem() called ->: ", + taskText);
         } 
 
+        function createDeleteButton(li){
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "X";
+            deleteButton.className = "delete=btn";
+            deleteButton.style.marginLeft = "8px";
+            deleteButton.onclick = () => handleDeleteTask(Li);
+             console.log("createDeleteButton() called ->", + li.textContent);
+             return deleteBtn;
+
+        }
+        
+
+        function handleDeleteClick(Li){
+            li.remove();
+            console.log("handleDeleteClick() called ->", + li.textContent.replace("X", "").trim(),Date());
+        }
+
     </script>
 </body>
 </html>
