@@ -52,6 +52,7 @@
 
         const doneBtn = createDoneButton(taskSpan);
         li.appendChild(doneBtn);
+
     }
 
     function createDeleteButton(li){
@@ -88,7 +89,7 @@
             taskSpan.classList.add("done");
 
             const buttons = li.querySelectorAll("buttons");
-
+            buttons.forEach(btn => btn.remove());
             console.log("Task complete", taskSpan.textContent, date());
             
         }
