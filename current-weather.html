@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Weather</title>
+</head>
+<body>
+     <h1>Current Weather</h1>
+     <button onclick="getWeather()">Get Weather</button>
+
+     <div id="weatherResult"></div>
+</body>
+<script>
+          const apiKey = "478952873cb8c5efb431b90f9ee801c2";
+
+
+          async function getWeather() {
+
+                    console.log("Prompt opened. " + Date());
+                    const city = prompt("Enter a city name");
+                    console.log("Prompt closed. " + Date());
+
+                    if(!city){
+                      alert("No city entered")
+                      console.log("No city entered.  " + Date());
+                      return;
+                    }
+
+                    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&unit=metric`;
+                     
+                    try{
+                       const response = await fetch(url);
+                       if(!response.ok) throw new Error("City not found");
+
+                       const data = await response.json();
+
+                       const weatherResult = document.getElementById("weatherResult");
+                       weatherResult.innerHTMl = `
+                       <h2>${data.name}, ${data.sys.country}</h2>
+                       <p>Temperature: ${data.main.temp} C</p>
+                       <p>Temperature: ${data.weather[0].description}</p>
+                       <p>Temperature: ${data.main.humidity}</p>
+                       <p>Temperature: ${data.wind.speed}</p>
+
+                       `;
+                    }catch(error){
+                              //alert("Error: " + error.message);
+                              console.log("Error:  " + error.message);
+                    }
+                    }
+          
+
+</script>
+</html>
